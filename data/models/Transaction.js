@@ -3,4 +3,6 @@ export class Transaction {
     success;
     error_message;
     created_at;
+
+    constructor() {}
 }
