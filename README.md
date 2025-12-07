@@ -21,7 +21,7 @@ Todas as classes (exceto Transaction) possuem os métodos: toJSON() que retorna 
 
 let conta = getCurrentAccount(); // retorna uma instância da classe Account do usuário logado.<br>
 
-contaJSON = conta.toJSON(); // retorna um JSON que representa essa instância de Account;<br>
+let contaJSON = conta.toJSON(); // retorna um JSON que representa essa instância de Account;<br>
 
 let contaRecuperadaViaJSON = Account.getFromJSON(contaJSON); // recupera a instância da mesma conta utilizando a representação JSON dela.<br>
 
