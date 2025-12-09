@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BankMP Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="auth-container" class="container-center">
+        
+        <div id="tela-login" class="card fade-in">
+            <div class="logo-area">
+                <i class="fa-solid fa-hand-holding-dollar logo-icon"></i>
+                <h2>Olá! Digite seu e-mail e senha</h2>
+            </div>
+            
+            <div class="input-group">
+                <input type="email" id="login-email" placeholder="E-mail">
+            </div>
+            <div class="input-group">
+                <input type="password" id="login-pass" placeholder="Senha">
+            </div>
+
+            <button id="btn-entrar" class="btn-primary">Entrar</button>
+            <button id="btn-ir-cadastro" class="btn-link">Criar uma conta</button>
+        </div>
+
+        <div id="tela-cadastro" class="card fade-in hidden">
+            <div class="logo-area">
+                <h2>Crie sua conta</h2>
+                <p>É rápido e fácil.</p>
+            </div>
+
+            <div class="input-group"><input type="text" id="cad-nome" placeholder="Nome completo"></div>
+            <div class="input-group"><input type="email" id="cad-email" placeholder="E-mail"></div>
+            <div class="input-group"><input type="password" id="cad-pass" placeholder="Senha"></div>
+            <div class="row">
+                <div class="input-group"><input type="text" id="cad-cpf" placeholder="CPF"></div>
+                <div class="input-group"><input type="text" id="cad-cep" placeholder="CEP"></div>
+            </div>
+
+            <button id="btn-cadastrar" class="btn-primary">Cadastrar-se</button>
+            <button id="btn-voltar-login" class="btn-link">Já tenho conta</button>
+        </div>
+    </div>
+
+    <div id="tela-dashboard" class="dashboard hidden">
+        
+        <header class="mp-header">
+            <div class="user-info">
+                <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                <div>
+                    <span class="greeting">Olá, <span id="dash-nome">Usuário</span></span>
+                    <small>Nível 6 . Mercado Pontos</small>
+                </div>
+            </div>
+            <button id="btn-sair" class="btn-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        </header>
+
+        <section class="balance-card">
+            <div class="balance-header">
+                <span>Saldo em conta</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <h1 class="balance-value">R$ <span id="dash-saldo">0,00</span></h1>
+            <p class="balance-yield">Seu dinheiro rendeu R$ 0,05 hoje</p>
+        </section>
+
+        <section class="actions-grid">
+            <div class="action-btn" onclick="document.getElementById('modal-deposito').showModal()">
+                <div class="icon-circle"><i class="fa-solid fa-plus"></i></div>
+                <span>Depositar</span>
+            </div>
+            <div class="action-btn" onclick="document.getElementById('modal-saque').showModal()">
+                <div class="icon-circle"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                <span>Sacar</span>
+            </div>
+            <div class="action-btn" onclick="document.getElementById('modal-transferencia').showModal()">
+                <div class="icon-circle"><i class="fa-solid fa-paper-plane"></i></div>
+                <span>Transferir</span>
+            </div>
+            <div class="action-btn">
+                <div class="icon-circle"><i class="fa-solid fa-barcode"></i></div>
+                <span>Pagar</span>
+            </div>
+        </section>
+
+        <section class="transactions-section">
+            <h3>Atividade recente</h3>
+            <div id="lista-extrato" class="transactions-list">
+                </div>
+        </section>
+    </div>
+
+    <dialog id="modal-deposito" class="modal">
+        <h3>Depositar Dinheiro</h3>
+        <input type="number" id="valor-deposito" placeholder="Valor (R$)">
+        <div class="modal-buttons">
+            <button id="btn-depositar" class="btn-primary">Confirmar</button>
+            <button onclick="document.getElementById('modal-deposito').close()" class="btn-link">Cancelar</button>
+        </div>
+    </dialog>
+
+    <dialog id="modal-saque" class="modal">
+        <h3>Sacar Dinheiro</h3>
+        <input type="number" id="valor-saque" placeholder="Valor (R$)">
+        <div class="modal-buttons">
+            <button id="btn-sacar" class="btn-primary">Confirmar</button>
+            <button onclick="document.getElementById('modal-saque').close()" class="btn-link">Cancelar</button>
+        </div>
+    </dialog>
+
+    <dialog id="modal-transferencia" class="modal">
+        <h3>Transferir Dinheiro</h3>
+        <input type="email" id="transfer-email-destino" placeholder="E-mail do Destinatário">
+        <input type="number" id="valor-transferencia" placeholder="Valor (R$)">
+        <div class="modal-buttons">
+            <button id="btn-transferir" class="btn-primary">Confirmar</button>
+            <button onclick="document.getElementById('modal-transferencia').close()" class="btn-link">Cancelar</button>
+        </div>
+    </dialog>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>

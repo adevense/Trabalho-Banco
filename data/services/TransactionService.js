@@ -1,46 +1,75 @@
-import { Deposit } from "../models/Deposit";
-import { Withdraw } from "../models/Withdraw";
-import { DataService } from "./DataService";
-import { Transfer } from "../models/Transfer";
+import { Deposit } from "../models/Deposit.js";
+import { Withdraw } from "../models/Withdraw.js";
+import { Transfer } from "../models/Transfer.js";
+import { DataService } from "./DataService.js"; 
 
 export class TransactionService {
 
     static makeDeposit(value, account) {
-        account.balance += value;
-        const new_deposit = new Deposit(value, account, new Date());
+        const numericValue = parseFloat(value);
+        if (isNaN(numericValue) || numericValue <= 0) {
+            return { success: false, message: "Valor de depósito inválido." };
+        }
+
+        account.balance += numericValue;
+        const new_deposit = new Deposit(numericValue, account, new Date());
         account.transactions.push(new_deposit);
         DataService.saveAccountData(account);
-        return new_deposit.toJSON();
+        return { success: true, transaction: new_deposit.toJSON() };
     }
 
     static makeWithdraw(value, account) {
-        let new_withdraw;
-        if(value <= account.balance) {
-            account.balance -= value;
-            new_withdraw = new Withdraw(value, account, true, "", new Date());
-            account.transactions.push(new_withdraw);
-            DataService.saveAccountData(account);
-        } else {
-            new_withdraw = new Withdraw(value, account, false, "Saldo insuficiente para realizar o saque.", new Date());
-            account.transactions.push(new_withdraw);
-            DataService.saveAccountData(account);
+        const numericValue = parseFloat(value);
+        if (isNaN(numericValue) || numericValue <= 0) {
+            return { success: false, message: "Valor de saque inválido." };
         }
-        return new_withdraw.toJSON();
+        
+        let new_withdraw;
+        let res = { success: true };
+        
+        if(numericValue <= account.balance) {
+            account.balance -= numericValue;
+            new_withdraw = new Withdraw(numericValue, account, true, "", new Date());
+            account.transactions.push(new_withdraw);
+            DataService.saveAccountData(account);
+            res.transaction = new_withdraw.toJSON();
+        } else {
+            new_withdraw = new Withdraw(numericValue, account, false, "Saldo insuficiente para saque.", new Date());
+            account.transactions.push(new_withdraw);
+            DataService.saveAccountData(account);
+            res.success = false;
+            res.message = new_withdraw.error_message;
+        }
+        return res;
     }
 
     static makeTransfer(value, sender, receiver) {
-        let new_transfer;
-        if(value <= sender.balance) {
-            sender.balance -= value;
-            receiver.balance += value;
-            new_transfer = new Transfer(value, sender, receiver, true, "", new Date());
-            sender.transactions.push(new_transfer);
-            DataService.saveAccountData(sender);
-        } else {
-            new_transfer = new Transfer(value, sender, receiver, false, "Saldo insuficiente para realizar a transferência.", new Date());
-            sender.transactions.push(new_transfer);
-            DataService.saveAccountData(sender);
+        const numericValue = parseFloat(value);
+        if (isNaN(numericValue) || numericValue <= 0) {
+            return { success: false, message: "Valor de transferência inválido." };
         }
-        return new_transfer.toJSON();
+
+        let new_transfer;
+        let res = { success: true };
+        
+        if(numericValue <= sender.balance) {
+            sender.balance -= numericValue;
+            receiver.balance += numericValue; 
+            
+            new_transfer = new Transfer(numericValue, sender, receiver, true, "", new Date());
+            
+            sender.transactions.push(new_transfer);
+            DataService.saveAccountData(sender);
+            DataService.saveAccountData(receiver); 
+            res.transaction = new_transfer.toJSON();
+            
+        } else {
+            new_transfer = new Transfer(numericValue, sender, receiver, false, "Saldo insuficiente para transferência.", new Date());
+            sender.transactions.push(new_transfer);
+            DataService.saveAccountData(sender);
+            res.success = false;
+            res.message = new_transfer.error_message;
+        }
+        return res;
     }
 }

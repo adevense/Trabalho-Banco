@@ -1,14 +1,7 @@
-export class Account {
-    id;
-    name;
-    email;
-    password;
-    cpf;
-    cep;
-    balance;
-    transactions;
+import { Transaction } from "./Transaction.js";
 
-    constructor (id, name, email, password, cpf, cep, balance, transactions) {
+export class Account {
+    constructor(id, name, email, password, cpf, cep, balance = 0, transactions = []) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -28,11 +21,7 @@ export class Account {
             cpf: this.cpf,
             cep: this.cep,
             balance: this.balance,
-            transactions: this.transactions
+            transactions: this.transactions,
         };
-    }
-
-    static getFromJSON(account_json) {
-        return new Account(account_json.id, account_json.name, account_json.email, account_json.password, account_json.cpf, account_json.cep, account_json.balance, account_json.transactions);
     }
 }

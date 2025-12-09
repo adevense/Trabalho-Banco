@@ -1,28 +1,21 @@
-import { Account } from "./Account";
-import { Transaction } from "./Transaction";
+import { Account } from "./Account.js";
+import { Transaction } from "./Transaction.js";
 
 export class Deposit extends Transaction {
-    account;
-
     constructor(value, account, created_at) {
-        this.value = value;
+        super(value, true, "", created_at); 
         this.account = account;
-        this.success = true;
-        this.error_message = "";
-        this.created_at = created_at;
+        this.type = 'deposit';
     }
 
     toJSON() {
         return {
-            value: this.name,
-            account: this.account.toJSON(),
+            type: this.type,
+            value: this.value,
+            account_id: this.account.id,
             success: this.success,
             error_message: this.error_message,
             created_at: this.created_at
         };
-    }
-
-    static getFromJSON(deposit_json) {
-        return new Deposit(deposit_json.value, Account.getFromJSON(deposit_json.account), deposit_json.created_at);
     }
 }
