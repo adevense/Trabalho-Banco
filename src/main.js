@@ -1,5 +1,5 @@
-import { DataService } from "./data/services/DataService.js";
-import { TransactionService } from "./data/services/TransactionService.js";
+import { DataService } from "../data/services/DataService.js";
+import { TransactionService } from "../data/services/TransactionService.js";
 
 const authContainer = document.getElementById('auth-container');
 const telaLogin = document.getElementById('tela-login');
@@ -46,14 +46,30 @@ function atualizarDashboard() {
 
     transacoesRecentes.forEach(t => {
         let icone = t.type === 'deposit' ? 'fa-circle-arrow-down' : 'fa-circle-arrow-up';
-        let tipoClass = t.value > 0 ? 'entrada' : 'saida';
-        let tipo = t.type === 'deposit' ? 'Depósito' : 'Saque/Transf.';
+        
+        let tipoClass;
+        if (t.type === 'deposit') {
+            tipoClass = 'entrada';
+        } else if (t.type === 'withdraw') {
+            tipoClass = 'saida';
+        } else if (t.type === 'transfer') {
+            tipoClass = 'transfer-saida';
+        }
+
+        // Se a transação falhou, usa a classe 'danger' (vermelho), caso contrário, usa a classe do tipo
+        const finalClass = t.success ? tipoClass : 'danger';
+        
+        let tipo = t.type === 'deposit' ? 'Depósito' : 
+                   t.type === 'withdraw' ? 'Saque' : 'Transferência';
+
+        // O valor negativo na saída é tratado pelo CSS com 'saida'
+        const valorExibido = Math.abs(t.value); 
 
         const div = document.createElement('div');
         div.className = 'trans-item';
         div.innerHTML = `
             <div class="user-info">
-                <div class="icon-circle" style="width:35px; height:35px; font-size:14px;">
+                <div class="icon-circle" style="width:35px; height:35px; font-size:14px; background-color: ${t.success ? 'var(--color-primary)' : 'var(--color-danger)'};">
                     <i class="fa-solid ${icone}"></i>
                 </div>
                 <div class="trans-info">
@@ -61,8 +77,8 @@ function atualizarDashboard() {
                     <small>${new Date(t.created_at).toLocaleDateString('pt-BR')}</small>
                 </div>
             </div>
-            <span class="trans-value ${t.success ? tipoClass : 'danger'}">
-                R$ ${formatarMoeda(t.value)}
+            <span class="trans-value ${finalClass}">
+                R$ ${formatarMoeda(valorExibido)}
             </span>
         `;
         lista.appendChild(div);

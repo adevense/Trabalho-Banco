@@ -1,0 +1,376 @@
+/* Definição das variáveis de cor */
+:root {
+    --color-primary: #003366; /* Azul Escuro Casa Grande */
+    --color-background: #1A1A1A; /* Fundo Preto/Escuro */
+    --color-card: #2E2E2E; /* Cor de Fundo dos Cards */
+    --color-text-light: #FFFFFF; /* Texto Principal (Branco) */
+    --color-text-dark: #CCCCCC; /* Texto Secundário (Cinza Claro) */
+    --color-success: #4CAF50; /* Verde para Depósito/Entrada */
+    --color-danger: #D32F2F; /* Vermelho para Saque/Saída */
+    --color-transfer: #4682B4; /* Azul Aço para Transferência */
+    --color-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Geral e Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--color-text-light);
+}
+
+body {
+    background-color: var(--color-background);
+    line-height: 1.5;
+}
+
+/* --- Telas de Autenticação (Login/Cadastro) --- */
+
+.container-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card {
+    background-color: var(--color-card);
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 15px var(--color-shadow);
+}
+
+.logo-area {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-icon {
+    color: var(--color-primary);
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.logo-area h2 {
+    color: var(--color-text-light);
+    font-size: 24px;
+}
+
+.logo-area p {
+    color: var(--color-text-dark);
+    font-size: 14px;
+}
+
+/* Inputs e Botões */
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--color-card);
+    border-radius: 8px;
+    background-color: #444;
+    color: var(--color-text-light);
+    font-size: 16px;
+}
+
+input::placeholder {
+    color: #888;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #0055AA;
+}
+
+.btn-link {
+    display: block;
+    text-align: center;
+    background: none;
+    border: none;
+    color: var(--color-text-dark);
+    font-size: 14px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.btn-link:hover {
+    color: var(--color-primary);
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+/* Utility */
+.hidden {
+    display: none !important;
+}
+
+/* --- Dashboard --- */
+
+.dashboard {
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+.mp-header {
+    background-color: var(--color-primary);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-text-light);
+    box-shadow: 0 2px 4px var(--color-shadow);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #2E2E2E;
+    color: var(--color-text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.greeting {
+    font-weight: 600;
+    font-size: 16px;
+    display: block;
+}
+
+small {
+    color: var(--color-text-dark);
+    font-size: 12px;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+    transition: opacity 0.3s;
+}
+
+.btn-icon:hover {
+    opacity: 0.8;
+}
+
+/* Card de Saldo */
+
+.balance-card {
+    background-color: var(--color-card);
+    margin: 20px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px var(--color-shadow);
+}
+
+.balance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-text-dark);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.balance-value {
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.balance-yield {
+    color: var(--color-success);
+    font-size: 14px;
+}
+
+/* Grid de Ações */
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    margin: 20px;
+    padding: 15px 0;
+}
+
+.action-btn {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+}
+
+.action-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-primary); /* Padrão: Cor primária do banco */
+    color: var(--color-text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin: 0 auto 5px;
+}
+
+.action-btn span {
+    color: var(--color-text-light);
+    font-size: 14px;
+    display: block;
+    margin-top: 5px;
+}
+
+/* --- Diferenciação Visual das Ações de Depósito e Saque na Grid --- */
+
+/* 1. Botão de Depósito (Entrada): Cor de Sucesso/Primária */
+.actions-grid .action-btn[onclick*="modal-deposito"] .icon-circle {
+    background-color: var(--color-success); /* Verde para Depósito */
+}
+
+/* 2. Botão de Saque (Saída): Cor de Perigo/Saída */
+.actions-grid .action-btn[onclick*="modal-saque"] .icon-circle {
+    background-color: var(--color-danger); /* Vermelho para Saque */
+}
+
+/* Extrato/Transações */
+
+.transactions-section {
+    margin: 20px;
+}
+
+.transactions-section h3 {
+    color: var(--color-text-light);
+    margin-bottom: 15px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+}
+
+.transactions-list {
+    background-color: #252525;
+    border-radius: 8px;
+    padding: 0 15px;
+}
+
+.trans-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #333;
+}
+
+.trans-item:last-child {
+    border-bottom: none;
+}
+
+.trans-info {
+    margin-left: 10px;
+}
+
+.trans-info strong {
+    display: block;
+    font-weight: 500;
+}
+
+.trans-info small {
+    color: var(--color-text-dark);
+}
+
+.trans-value {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Cores do extrato */
+.trans-value.entrada {
+    color: var(--color-success);
+}
+
+.trans-value.saida {
+    color: var(--color-danger);
+}
+
+/* NOVO: Cor para Transferências (Saída) */
+.trans-value.transfer-saida {
+    color: var(--color-transfer);
+}
+
+.danger {
+    color: var(--color-danger);
+    font-weight: normal; 
+}
+
+/* --- Modals --- */
+
+.modal {
+    background-color: var(--color-card);
+    border: none;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 20px var(--color-shadow);
+    color: var(--color-text-light);
+}
+
+.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal h3 {
+    color: var(--color-text-light);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal .btn-primary, .modal .btn-link {
+    flex: 1;
+    margin: 0;
+}

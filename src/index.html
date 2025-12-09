@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BankMP Clone</title>
+    <title>Banco Casa Grande</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,8 +13,8 @@
         
         <div id="tela-login" class="card fade-in">
             <div class="logo-area">
-                <i class="fa-solid fa-hand-holding-dollar logo-icon"></i>
-                <h2>Olá! Digite seu e-mail e senha</h2>
+                <i class="fa-solid fa-building-columns logo-icon"></i>
+                <h2>Bem-vindo(a) ao Casa Grande</h2>
             </div>
             
             <div class="input-group">
@@ -54,7 +54,7 @@
                 <div class="avatar"><i class="fa-solid fa-user"></i></div>
                 <div>
                     <span class="greeting">Olá, <span id="dash-nome">Usuário</span></span>
-                    <small>Nível 6 . Mercado Pontos</small>
+                    <small>Bem-vindo(a) de volta</small>
                 </div>
             </div>
             <button id="btn-sair" class="btn-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
@@ -66,7 +66,7 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </div>
             <h1 class="balance-value">R$ <span id="dash-saldo">0,00</span></h1>
-            <p class="balance-yield">Seu dinheiro rendeu R$ 0,05 hoje</p>
+            <p class="balance-yield">Seu dinheiro rende 100% do CDI</p>
         </section>
 
         <section class="actions-grid">
@@ -74,17 +74,15 @@
                 <div class="icon-circle"><i class="fa-solid fa-plus"></i></div>
                 <span>Depositar</span>
             </div>
+            
             <div class="action-btn" onclick="document.getElementById('modal-saque').showModal()">
-                <div class="icon-circle"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                <div class="icon-circle"><i class="fa-solid fa-minus"></i></div>
                 <span>Sacar</span>
             </div>
+            
             <div class="action-btn" onclick="document.getElementById('modal-transferencia').showModal()">
                 <div class="icon-circle"><i class="fa-solid fa-paper-plane"></i></div>
                 <span>Transferir</span>
-            </div>
-            <div class="action-btn">
-                <div class="icon-circle"><i class="fa-solid fa-barcode"></i></div>
-                <span>Pagar</span>
             </div>
         </section>
 
